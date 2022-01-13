@@ -1,7 +1,12 @@
 <RCC>
     <qresource prefix="/">
-        <file>res/main.qml</file>
-        <file>res/AppControls.qml</file>
-        <file>res/fontawesome-webfont.ttf</file>
+        <file>component/CusToolBar.qml</file>
+        <file>font/fontawesome-webfont.ttf</file>
+        <file>component/CusWindow.qml</file>
+        <file>layout/Main.qml</file>
+        <file>component/CusSliderBar.qml</file>
+        <file>component/CusPage.qml</file>
+        <file>component/CusToolButton.qml</file>
+        <file>image/ic_logo.png</file>
     </qresource>
 </RCC>

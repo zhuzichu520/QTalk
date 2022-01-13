@@ -11,5 +11,5 @@ MainWindow::~MainWindow()
 
 void MainWindow::show()
 {
-    m_engine.load(QUrl("qrc:/res/main.qml"));
+    m_engine.load(QUrl("qrc:/layout/Main.qml"));
 }
