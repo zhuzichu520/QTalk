@@ -1,0 +1,1 @@
+﻿project(qtalk VERSION 0.1 LANGUAGES CXX)

@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/main.qml</file>
+        <file>res/AppControls.qml</file>
+        <file>res/fontawesome-webfont.ttf</file>
+    </qresource>
+</RCC>
