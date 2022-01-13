@@ -34,6 +34,7 @@ Rectangle {
             onTapped: if (tapCount === 2) toggleMaximized()
             gesturePolicy: TapHandler.DragThreshold
         }
+
         DragHandler {
             grabPermissions: TapHandler.CanTakeOverFromAnything
             onActiveChanged: if (active) { window.startSystemMove(); }
@@ -57,8 +58,6 @@ Rectangle {
 
         }
 
-
-
         RowLayout {
             spacing: 0
             anchors.right: parent.right
@@ -66,7 +65,7 @@ Rectangle {
             height: parent.height
             CusToolButton {
                 icon: "\uf068"
-                onClickEvent: window.showMinimized();
+                onClickEvent: window.showMinimized()
             }
             CusToolButton {
                 icon: window.visibility === Window.Maximized ? "\uf066" : "\uf065"

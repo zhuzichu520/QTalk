@@ -7,5 +7,6 @@
         <file>component/CusSliderBar.qml</file>
         <file>component/CusToolButton.qml</file>
         <file>image/ic_logo.png</file>
+        <file>image/bg_shadow_border.png</file>
     </qresource>
 </RCC>
