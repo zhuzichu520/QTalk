@@ -1,9 +1,10 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 
 Item {
     id:root
 
     property alias icon : textIcon.text
+    property alias color : textIcon.color
     signal clickEvent
 
     height: 30

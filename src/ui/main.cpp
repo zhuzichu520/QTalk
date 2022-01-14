@@ -14,6 +14,11 @@ int main(int argc, char *argv[])
     //    QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
     QGuiApplication app(argc, argv);
+    app.setApplicationName("QTalk");
+    app.setOrganizationName("QTalk");
+    app.setOrganizationDomain("https://github.com/zhuzichu520/QTalk");
+    app.setApplicationVersion("1.0");
+
     MainWindow window;
     window.show();
     return app.exec();

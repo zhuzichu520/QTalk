@@ -11,8 +11,29 @@ CusWindow {
     minimumHeight: 300
     title: qsTr("talk")
 
-    CusSliderBar{
-        id:slider
+    page: CusPage{
+
+
+        CusToolBar {
+            anchors{
+                left: parent.left
+                right: parent.right
+                top:parent.top
+            }
+            height: toolBarHeight
+        }
+
+        anchors.fill: parent
+
+        CusSliderBar{
+            id:slider
+        }
+    }
+
+
+    Welcome{
+        anchors.fill: parent
+        anchors.margins: containerMargins
     }
 
 }

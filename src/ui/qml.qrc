@@ -8,5 +8,12 @@
         <file>component/CusToolButton.qml</file>
         <file>image/ic_logo.png</file>
         <file>image/bg_shadow_border.png</file>
+        <file>component/WindowResize.qml</file>
+        <file>layout/Welcome.qml</file>
+        <file>component/CusPage.qml</file>
+        <file>storage/AppStorage.qml</file>
+        <file>storage/qmldir</file>
+        <file>storage/Theme.qml</file>
+        <file>view/Rectangle.qml</file>
     </qresource>
 </RCC>

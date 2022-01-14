@@ -2,11 +2,15 @@
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
+import "../storage"
+import "../view"
 
 
 Rectangle {
 
     property string title
+    property url logo
+    property var window: Window.window
 
     clip: true
     height: 30
@@ -27,12 +31,18 @@ Rectangle {
 
     Rectangle {
         id:layout_top
-        color: "#f9f9f9"
+        color: Theme.colorBackground1
         anchors.fill: parent
 
         TapHandler {
             onTapped: if (tapCount === 2) toggleMaximized()
             gesturePolicy: TapHandler.DragThreshold
+        }
+
+        MouseArea{
+            anchors.fill: parent
+            acceptedButtons: Qt.NoButton
+
         }
 
         DragHandler {
@@ -46,9 +56,8 @@ Rectangle {
             anchors.leftMargin: 8
             height: parent.height
             Image {
-                id: logo
                 sourceSize: Qt.size(15,15)
-                source: "qrc:/image/ic_logo.png"
+                source: logo
             }
 
             Text {
@@ -63,6 +72,15 @@ Rectangle {
             anchors.right: parent.right
             anchors.rightMargin: 5
             height: parent.height
+
+            CusToolButton {
+                icon: AppStorage.isDark ? "\uf185" : "\uf186"
+                color: AppStorage.isDark ? "#FA9D16" : "#FA9D16"
+                onClickEvent: {
+                    AppStorage.isDark = !AppStorage.isDark
+                }
+            }
+
             CusToolButton {
                 icon: "\uf068"
                 onClickEvent: window.showMinimized()
