@@ -8,8 +8,6 @@ ApplicationWindow {
 
     property alias page: container.children
     property int borderOffset: 5
-    property int toolBarHeight: 30
-    property int toolBarleftMargin: 0
     property int containerMargins: window.visibility === Window.Windowed ? borderOffset : 0
 
     flags: Qt.Window | Qt.FramelessWindowHint

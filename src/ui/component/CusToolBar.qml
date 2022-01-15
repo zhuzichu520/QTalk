@@ -11,9 +11,19 @@ Rectangle {
     property string title
     property url logo
     property var window: Window.window
+    property bool maxEnable: true
+    property bool minEnable: true
+    property bool closeEnable: true
+    property bool darkEnable: true
 
     clip: true
     height: 30
+
+    anchors{
+        left: parent.left
+        right: parent.right
+        top:parent.top
+    }
 
     function toggleMaximized() {
         if (window.visibility === Window.Maximized) {
@@ -22,12 +32,6 @@ Rectangle {
             window.showMaximized();
         }
     }
-
-    FontLoader {
-        id: awesome
-        source: "qrc:/font/fontawesome-webfont.ttf"
-    }
-
 
     Rectangle {
         id:layout_top
@@ -79,19 +83,23 @@ Rectangle {
                 onClickEvent: {
                     AppStorage.isDark = !AppStorage.isDark
                 }
+                visible: darkEnable
             }
 
             CusToolButton {
                 icon: "\uf068"
                 onClickEvent: window.showMinimized()
+                visible: minEnable
             }
             CusToolButton {
                 icon: window.visibility === Window.Maximized ? "\uf066" : "\uf065"
                 onClickEvent: window.toggleMaximized();
+                visible: maxEnable
             }
             CusToolButton {
                 icon: "\uf00d"
                 onClickEvent: window.close();
+                visible: closeEnable
             }
         }
     }

@@ -1,21 +1,24 @@
-﻿set(qtalk_SRS
-    main.cpp
-    MainWindow.cpp
+﻿set(UILibrary_SRS
+        MainWindow.cpp
 )
 
-set(qtalk_HEADERS
+set(UILibrary_HEADERS
     MainWindow.h
 )
 
-set(qtalk_RCC
+set(UILibrary_RCC
     qml.qrc
 )
 
-add_executable(qtalk ${qtalk_SRS} ${qtalk_RCC})
+add_library(UILibrary SHARED ${UILibrary_SRS} ${UILibrary_RCC})
 
-target_link_libraries(qtalk
+target_link_libraries(UILibrary
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Quick
     Qt${QT_VERSION_MAJOR}::QuickControls2
+    IMLibrary
     )
+install(TARGETS UILibrary LIBRARY DESTINATION lib)
+install(FILES ${UILibrary_HEADERS} DESTINATION include/qtalk/ui)
+target_include_directories(UILibrary SYSTEM PUBLIC ${CMAKE_SOURCE_DIR}/src/ui)

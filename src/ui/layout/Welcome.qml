@@ -5,11 +5,28 @@ import "../storage"
 
 Page {
 
+    id:root
+
+    property alias username: userName.text
+    property alias ddir: downloadDirVal.text
+
+    signal updated()
+
+    background: Rectangle{
+        color: Theme.colorBackground
+    }
+
     Component.onCompleted: {
         welcomeTimer.start()
     }
 
-    Timer { id: welcomeTimer
+    FontLoader {
+        id: awesome
+        source: "qrc:/font/fontawesome-webfont.ttf"
+    }
+
+    Timer {
+        id: welcomeTimer
         running: false
         interval: 1000
         repeat: false
@@ -54,7 +71,7 @@ Page {
             height: 400
             interactive: false
 
-            Page{
+            Item{
 
                 Item{
                     anchors.centerIn: parent
@@ -69,6 +86,7 @@ Page {
                             text: qsTr("用户名")
                             font.pixelSize: 14
                             height: 30
+                            color:Theme.colorFontPrimary
                             width: parent.width
                             Behavior on font.pixelSize { NumberAnimation { duration: 100 } }
                         }
@@ -79,11 +97,12 @@ Page {
                             placeholderText: qsTr("例: 皮卡丘")
                             height: 40
                             width: parent.width
+                            color: Theme.colorFontPrimary
                             onActiveFocusChanged: userNameLabel.font.pixelSize = 20
                             background: Rectangle {
                                 implicitHeight: 40
                                 implicitWidth: 200
-                                color: parent.activeFocus ? "transparent" : "#f6f6f6"
+                                color: parent.activeFocus ? Theme.colorBackground : Theme.colorBackground2
                                 border.color: parent.activeFocus ? Theme.colorPrimary : "#888"
                                 border.width: parent.activeFocus ? 2 : 0
                             }
@@ -92,7 +111,7 @@ Page {
                 }
             }
 
-            Page{
+            Item{
                 Item { id: downloadDirForm
                     anchors.centerIn: parent
                     width: 300
@@ -101,28 +120,33 @@ Page {
                     Column {
                         anchors.fill: parent
 
-                        Text { id: downloadDirLabel
+                        Text {
+                            id: downloadDirLabel
                             text: qsTr("默认下载路径")
                             font.pixelSize: 14
                             height: 40
+                            color:Theme.colorFontPrimary
                             width: parent.width
                             Behavior on font.pixelSize { NumberAnimation { duration: 100 } }
                         }
 
-                        Item { id: downloadDir
+                        Item {
+                            id: downloadDir
                             width: parent.width
                             height: 40
 
-                            TextField { id: downloadDirVal
+                            TextField {
+                                id: downloadDirVal
                                 anchors.left: parent.left
                                 anchors.right: selectBtn.left
                                 height: parent.height
                                 placeholderText: qsTr("例: ~/Downloads")
                                 text: dirDialog.folder
+                                color: Theme.colorFontPrimary
                                 background: Rectangle {
                                     implicitHeight: 40
                                     implicitWidth: 200
-                                    color: parent.activeFocus ? "transparent" : "#f6f6f6"
+                                    color: parent.activeFocus ? Theme.colorBackground : Theme.colorBackground2
                                     border.color: parent.activeFocus ? Theme.colorPrimary : "#888"
                                     border.width: parent.activeFocus ? 2 : 0
                                 }
@@ -132,6 +156,7 @@ Page {
                                 anchors.right: parent.right
                                 text: qsTr("\uf07b")
                                 height: parent.height
+                                font.family: awesome.name
                                 width: height
                                 onClicked: {
                                     if(downloadDirLabel.font.pixelSize != 20)
@@ -148,11 +173,8 @@ Page {
                 }
             }
 
-            Page{
-                ColorDialog { id: colorDialog
-                    currentColor: Theme.colorFontPrimary
-                    color: currentColor
-                }
+            Item{
+
                 Item { id: colorThemeForm
                     anchors.centerIn: parent
                     width: 140
@@ -165,6 +187,7 @@ Page {
                         Text { id: colorThemeLabel
                             text: qsTr("请选择主题颜色")
                             font.pixelSize: 14
+                            color:Theme.colorFontPrimary
                             height: 40
                             width: parent.width
                             Behavior on font.pixelSize { NumberAnimation { duration: 100 } }
@@ -172,20 +195,20 @@ Page {
 
                         Rectangle { id: colorView
                             anchors.horizontalCenter: parent.horizontalCenter
-                            color: colorDialog.color
+                            color: Theme.colorPrimary
                             width: 100
                             height: 100
 
                             Text { id: colorText
                                 anchors.centerIn: parent
-                                text: colorDialog.color
+                                text: Theme.colorPrimary
                             }
 
                             MouseArea{
                                 anchors.fill: parent
                                 onClicked: {
                                     colorThemeLabel.font.pixelSize = 20
-                                    colorDialog.open()
+                                    packerColor.show()
                                 }
                             }
                         }
@@ -239,15 +262,21 @@ Page {
                             inputs.setCurrentIndex(page + 1)
                         else if(page == 2)
                         {
-                            setting.updated()
-                            setting.close()
+                            root.updated()
+                            root.visible = false
                         }
                     }
                 }
             }
         }
+    }
 
-
+    PackerColor{
+        id:packerColor
+        onChooseColor:
+            (color) => {
+                Theme.colorPrimary = color
+            }
     }
 
 }
