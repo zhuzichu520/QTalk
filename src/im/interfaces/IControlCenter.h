@@ -2,10 +2,10 @@
 #define ICONTROLCENTER_H
 
 #include <QObject>
+#include "IServer.h"
 
-namespace IPConnect
+namespace IM
 {
-
 
 class IControlCenter : public QObject
 {
@@ -15,6 +15,8 @@ public:
 
 	static IControlCenter* instance();
 
+    virtual IServer* messageServer() = 0;
+
 protected:
 
 	static IControlCenter* m_instance;
@@ -23,7 +25,7 @@ protected:
 	explicit IControlCenter(QObject* parent = nullptr);
 
 
-	~IControlCenter();
+	~IControlCenter() override;
 
 };
 
