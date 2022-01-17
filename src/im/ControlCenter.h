@@ -1,4 +1,4 @@
-#ifndef CONTROLCENTER_H
+﻿#ifndef CONTROLCENTER_H
 #define CONTROLCENTER_H
 
 #include "interfaces/IControlCenter.h"
@@ -7,34 +7,42 @@
 
 namespace IM {
 
-    class IServer;
+class IServer;
+class IClientManager;
+class ControlCenterPrivate;
+class ICryptEngine;
+class IUserSettings;
 
-    class ControlCenterPrivate;
-
-    class ControlCenter : public IControlCenter {
+class ControlCenter : public IControlCenter {
     Q_OBJECT
-    public:
-        explicit ControlCenter(QObject *parent = nullptr);
+public:
+    explicit ControlCenter(QObject *parent = nullptr);
 
-        ~ControlCenter() override;
+    ~ControlCenter() override;
 
-        static ControlCenter *instance();
+    static ControlCenter *instance();
 
-        static void init();
+    static void init();
 
-        static void quit();
+    static void quit();
 
-        IServer *messageServer() override;
+    IServer *messageServer() override;
 
-    public Q_SLOTS:
+    ICryptEngine* cryptEngine() override;
 
-        void shutdown();
+    IClientManager* clientManager() override;
 
-    protected:
-        friend ControlCenterPrivate;
-        ControlCenterPrivate *m_ccp;
-        static ControlCenter *m_instance;
-    };
+    IUserSettings* userSettings() override;
+
+public Q_SLOTS:
+
+    void shutdown();
+
+protected:
+    friend ControlCenterPrivate;
+    ControlCenterPrivate *m_ccp;
+    static ControlCenter *m_instance;
+};
 
 }
 

@@ -3,7 +3,7 @@
 #include <QApplication>
 
 #include "MainWindow.h"
-#include "ControlCenter.h"
+#include "Controlcenter.h"
 #include "ToolLog.h"
 
 using namespace IM;

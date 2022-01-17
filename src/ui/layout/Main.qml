@@ -31,6 +31,16 @@ CusWindow {
 
         }
 
+        Item{
+            id:content
+            anchors{
+                top:toolBar.bottom
+                left: slider.right
+                bottom: parent.bottom
+                right:parent.right
+            }
+        }
+
 
         Text {
             id: name

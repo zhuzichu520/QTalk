@@ -1,4 +1,4 @@
-#include "MessageServer.h"
+﻿#include "MessageServer.h"
 
 #include "Connection.h"
 #include "interfaces/IServer.h"
@@ -22,7 +22,7 @@ namespace IM {
     }
 
     void MessageServer::shutdown() {
-        LOGI("Stopped");
+        LOGI("MessageServer-Stopped");
         close();
     }
 

@@ -1,4 +1,5 @@
-#include "Connection.h"
+﻿#include "Connection.h"
+#include "ToolLog.h"
 
 namespace IM {
 

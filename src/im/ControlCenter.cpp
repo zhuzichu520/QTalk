@@ -1,7 +1,10 @@
-#include "ControlCenter.h"
+﻿#include "Controlcenter.h"
 
 #include "ControlCenterPrivate.h"
 #include "MessageServer.h"
+#include "UserSettings.h"
+#include "ClientManager.h"
+#include "CryptEngine.h"
 
 #include <QObject>
 
@@ -41,5 +44,19 @@ namespace IM {
         return m_ccp->m_messageServer;
     }
 
+    IUserSettings* ControlCenter::userSettings()
+    {
+        return m_ccp->m_userSettings;
+    }
+
+    IClientManager* ControlCenter::clientManager()
+    {
+        return m_ccp->m_clientManager;
+    }
+
+    ICryptEngine* ControlCenter::cryptEngine()
+    {
+        return m_ccp->m_cryptEngine;
+    }
 
 }

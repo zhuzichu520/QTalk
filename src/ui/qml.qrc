@@ -24,5 +24,6 @@
         <file>third_party/colorpicker/PanelBorder.qml</file>
         <file>third_party/colorpicker/SBPicker.qml</file>
         <file>layout/PackerColor.qml</file>
+        <file>font/linea-basic-10.ttf</file>
     </qresource>
 </RCC>
