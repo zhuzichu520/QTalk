@@ -8,6 +8,7 @@
 namespace IM {
 
     class IServer;
+
     class ControlCenterPrivate;
 
     class ControlCenter : public IControlCenter {
@@ -23,7 +24,11 @@ namespace IM {
 
         static void quit();
 
-        IServer* messageServer() override;
+        IServer *messageServer() override;
+
+    public Q_SLOTS:
+
+        void shutdown();
 
     protected:
         friend ControlCenterPrivate;

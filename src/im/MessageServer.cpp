@@ -1,6 +1,5 @@
 #include "MessageServer.h"
 
-#include "ControlCenter.h"
 #include "Connection.h"
 #include "interfaces/IServer.h"
 #include "ToolLog.h"

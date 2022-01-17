@@ -23,9 +23,10 @@ int main(int argc, char *argv[])
     QGuiApplication::setApplicationVersion("1.0");
     QGuiApplication app(argc, argv);
     ControlCenter::init();
+    QObject::connect(&app,&QApplication::aboutToQuit,ControlCenter::instance(),&ControlCenter::shutdown);
     MainWindow window;
     window.show();
-    ControlCenter::quit();
     QGuiApplication::exec();
+    ControlCenter::quit();
     return 0;
 }

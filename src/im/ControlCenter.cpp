@@ -11,8 +11,9 @@ namespace IM {
 
     ControlCenter::ControlCenter(QObject* parent) : IControlCenter(parent) , m_ccp(new ControlCenterPrivate(this)){}
 
-    ControlCenter::~ControlCenter()
-    = default;
+    ControlCenter::~ControlCenter(){
+        shutdown();
+    }
 
     ControlCenter *ControlCenter::instance() {
         return m_instance;
@@ -27,6 +28,12 @@ namespace IM {
     {
         m_instance->deleteLater();
         m_instance = nullptr;
+    }
+
+    void ControlCenter::shutdown()
+    {
+        m_instance->m_ccp->shutdown();
+        delete m_ccp;
     }
 
     IServer* ControlCenter::messageServer()
