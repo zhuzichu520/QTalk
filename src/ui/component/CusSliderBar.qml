@@ -19,18 +19,23 @@ Rectangle {
         id:sliderModel
         ListElement{
             icon:"."
+            url:"qrc:/layout/Messenger.qml"
         }
         ListElement{
             icon:"F"
+            url:"qrc:/layout/TransferManager.qml"
         }
         ListElement{
             icon:"P"
+            url:"qrc:/layout/AppSettings.qml"
         }
         ListElement{
             icon:"8"
+            url:"qrc:/layout/QuickConnect.qml"
         }
         ListElement{
             icon:"\ue007"
+            url:"qrc:/layout/FileTransfer.qml"
         }
     }
 
@@ -77,6 +82,10 @@ Rectangle {
                 }
             }
         }
+    }
+
+    function getUrl(){
+        return sliderModel.get(curIndex).url
     }
 
 }

@@ -4,70 +4,67 @@
 
 #include <QObject>
 
-namespace IM
-{
-class IConnection;
-class Message;
+namespace IM {
+    class IConnection;
+
+    class Message;
 
 
-class SecureTunnel : public QObject
-{
+    class SecureTunnel : public QObject {
     Q_OBJECT
 
-public:
+    public:
 
-    explicit SecureTunnel(QObject* parent = nullptr);
+        explicit SecureTunnel(QObject *parent = nullptr);
 
+        ~SecureTunnel();
 
-    ~SecureTunnel();
+        void create();
 
+        bool secure() const;
 
-    void create();
+        void send(QByteArray data);
 
-    bool secure() const;
+        QByteArray read();
 
-    void send(QByteArray data);
+        Message readMessage();
 
-    QByteArray read();
+        void setConnection(IConnection *conn);
 
-    Message readMessage();
+    Q_SIGNALS:
 
-    void setConnection(IConnection* conn);
+        void secured();
 
-Q_SIGNALS:
+    protected:
 
-    void secured();
-
-protected:
-
-    void readyRead();
+        void readyRead();
 
 
-    void sendKey();
+        void sendKey();
 
-    void sendAESPass();
+        void sendAESPass();
 
-    void getAESPass();
+        void getAESPass();
 
-    void getRSAPub();
+        void getRSAPub();
 
-    QByteArray dataSize(quint32 size);
+        QByteArray dataSize(quint32 size);
 
-    QByteArray readRawData();
+        QByteArray readRawData();
 
-    QByteArray readAESDecryptedData();
+        QByteArray readAESDecryptedData();
 
-    QByteArray readRSADecryptedData();
+        QByteArray readRSADecryptedData();
 
-private:
-    bool m_secured;
-    bool m_gotRSAPub;
-    bool m_keySent;
-    bool m_keyAccepted;
-    IConnection* m_conn;
-    QByteArray m_clientPublicKey;
-    QString m_aesPassPhrase;
-};
+    private:
+        bool m_secured;
+        bool m_gotRSAPub;
+        bool m_keySent;
+        bool m_keyAccepted;
+        IConnection *m_conn;
+        QByteArray m_clientPublicKey;
+        QString m_aesPassPhrase;
+    };
 
 }
 #endif // SECURETUNNEL_H

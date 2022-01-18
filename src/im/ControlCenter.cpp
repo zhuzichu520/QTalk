@@ -12,9 +12,9 @@ namespace IM {
 
     ControlCenter *ControlCenter::m_instance = nullptr;
 
-    ControlCenter::ControlCenter(QObject* parent) : IControlCenter(parent) , m_ccp(new ControlCenterPrivate(this)){}
+    ControlCenter::ControlCenter(QObject *parent) : IControlCenter(parent), m_ccp(new ControlCenterPrivate(this)) {}
 
-    ControlCenter::~ControlCenter(){
+    ControlCenter::~ControlCenter() {
         shutdown();
     }
 
@@ -27,35 +27,29 @@ namespace IM {
         m_instance->m_ccp->init();
     }
 
-    void ControlCenter::quit()
-    {
+    void ControlCenter::quit() {
         m_instance->deleteLater();
         m_instance = nullptr;
     }
 
-    void ControlCenter::shutdown()
-    {
+    void ControlCenter::shutdown() {
         m_instance->m_ccp->shutdown();
         delete m_ccp;
     }
 
-    IServer* ControlCenter::messageServer()
-    {
+    IServer *ControlCenter::messageServer() {
         return m_ccp->m_messageServer;
     }
 
-    IUserSettings* ControlCenter::userSettings()
-    {
+    IUserSettings *ControlCenter::userSettings() {
         return m_ccp->m_userSettings;
     }
 
-    IClientManager* ControlCenter::clientManager()
-    {
+    IClientManager *ControlCenter::clientManager() {
         return m_ccp->m_clientManager;
     }
 
-    ICryptEngine* ControlCenter::cryptEngine()
-    {
+    ICryptEngine *ControlCenter::cryptEngine() {
         return m_ccp->m_cryptEngine;
     }
 

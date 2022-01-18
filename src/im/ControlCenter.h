@@ -7,42 +7,46 @@
 
 namespace IM {
 
-class IServer;
-class IClientManager;
-class ControlCenterPrivate;
-class ICryptEngine;
-class IUserSettings;
+    class IServer;
 
-class ControlCenter : public IControlCenter {
+    class IClientManager;
+
+    class ControlCenterPrivate;
+
+    class ICryptEngine;
+
+    class IUserSettings;
+
+    class ControlCenter : public IControlCenter {
     Q_OBJECT
-public:
-    explicit ControlCenter(QObject *parent = nullptr);
+    public:
+        explicit ControlCenter(QObject *parent = nullptr);
 
-    ~ControlCenter() override;
+        ~ControlCenter() override;
 
-    static ControlCenter *instance();
+        static ControlCenter *instance();
 
-    static void init();
+        static void init();
 
-    static void quit();
+        static void quit();
 
-    IServer *messageServer() override;
+        IServer *messageServer() override;
 
-    ICryptEngine* cryptEngine() override;
+        ICryptEngine *cryptEngine() override;
 
-    IClientManager* clientManager() override;
+        IClientManager *clientManager() override;
 
-    IUserSettings* userSettings() override;
+        IUserSettings *userSettings() override;
 
-public Q_SLOTS:
+    public Q_SLOTS:
 
-    void shutdown();
+        void shutdown();
 
-protected:
-    friend ControlCenterPrivate;
-    ControlCenterPrivate *m_ccp;
-    static ControlCenter *m_instance;
-};
+    protected:
+        friend ControlCenterPrivate;
+        ControlCenterPrivate *m_ccp;
+        static ControlCenter *m_instance;
+    };
 
 }
 

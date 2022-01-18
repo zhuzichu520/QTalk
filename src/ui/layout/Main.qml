@@ -31,7 +31,7 @@ CusWindow {
 
         }
 
-        Item{
+        Loader{
             id:content
             anchors{
                 top:toolBar.bottom
@@ -39,26 +39,19 @@ CusWindow {
                 bottom: parent.bottom
                 right:parent.right
             }
-        }
-
-
-        Text {
-            id: name
-            text: qsTr(" (⊙o⊙)…")
-            font.pixelSize: 26
-            anchors.centerIn: parent
+            source: slider.getUrl()
         }
 
     }
 
 
-    //    Welcome{
-    //        anchors.fill: parent
-    //        anchors.margins: containerMargins
-    //        onUpdated: {
-    //            console.debug("username:"+username)
-    //            console.debug("ddir:"+ddir)
-    //        }
-    //    }
+//        Welcome{
+//            anchors.fill: parent
+//            anchors.margins: containerMargins
+//            onUpdated: {
+//                console.debug("username:"+username)
+//                console.debug("ddir:"+ddir)
+//            }
+//        }
 
 }

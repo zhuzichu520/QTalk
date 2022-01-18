@@ -6,61 +6,60 @@
 #include <QMap>
 #include <QVector>
 
-namespace IM
-{
-class Client;
-class ClientInformation;
+namespace IM {
+    class Client;
+
+    class ClientInformation;
 
 
-class ClientThreadManager : public QObject
-{
+    class ClientThreadManager : public QObject {
     Q_OBJECT
-public:
+    public:
 
-    explicit ClientThreadManager(QObject* parent = nullptr);
+        explicit ClientThreadManager(QObject *parent = nullptr);
 
-    ~ClientThreadManager();
+        ~ClientThreadManager();
 
-Q_SIGNALS:
+    Q_SIGNALS:
 
-    void clientAdded(ClientInformation ci);
+        void clientAdded(ClientInformation ci);
 
-    void messageAdded(qint16 id,QString msg);
+        void messageAdded(qint16 id, QString msg);
 
-    void clientRemoved(qint16 id);
+        void clientRemoved(qint16 id);
 
-public Q_SLOTS:
+    public Q_SLOTS:
 
-    void clientCreated(Client* client);
+        void clientCreated(Client *client);
 
-    void addClient(ClientInformation ci);
+        void addClient(ClientInformation ci);
 
-    void messageRecieved(qint16 id,QString msg);
+        void messageRecieved(qint16 id, QString msg);
 
-    void closeConnection(Client* client);
+        void closeConnection(Client *client);
 
-    void removeAllClients();
+        void removeAllClients();
 
-    void removeClient();
+        void removeClient();
 
-    void sendToClient(qint16 id, QString msg);
+        void sendToClient(qint16 id, QString msg);
 
-protected:
+    protected:
 
-    QMap<qint16,Client*> m_clientList;
-
-
-    QVector<Client*> m_clientInQueue;
+        QMap<qint16, Client *> m_clientList;
 
 
-    void addToPending(Client* client);
+        QVector<Client *> m_clientInQueue;
 
 
-    bool isPending(Client* client);
+        void addToPending(Client *client);
 
-    void removeIfPending(Client* client);
 
-};
+        bool isPending(Client *client);
+
+        void removeIfPending(Client *client);
+
+    };
 
 }
 

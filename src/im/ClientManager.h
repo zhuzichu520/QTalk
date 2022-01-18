@@ -10,54 +10,70 @@
 #include <QMap>
 #include <QThread>
 
-namespace IM
-{
+namespace IM {
 
-class IConnection;
-class Client;
-class ClientInformation;
-class ClientThreadManager;
+    class IConnection;
 
-class ClientManager : public IClientManager
-{
+    class Client;
+
+    class ClientInformation;
+
+    class ClientThreadManager;
+
+    class ClientManager : public IClientManager {
     Q_OBJECT
 
-public:
-    explicit ClientManager(QObject* parent = nullptr);
-    ~ClientManager();
+    public:
+        explicit ClientManager(QObject *parent = nullptr);
 
-    void shutdown() override;
-    QList<ClientInformation> clients() override;
-    ClientInformation clientInfo(qint16) override;
-    QList<MessageInformation> messages() override;
-    void addConnection(IConnection*) override;
-    void sendMessage(qint16,QString) override;
-    void connectManualy(QString) override;
+        ~ClientManager();
 
-Q_SIGNALS:
-    void clientCreated(Client*);
-    void removeAllClients();
-    void sendToClient(qint16,QString);
+        void shutdown() override;
 
-public Q_SLOTS:
-    void clientAdded(ClientInformation);
-    void addMessage(qint16,QString);
-    void clientRemoved(qint16);
+        QList<ClientInformation> clients() override;
 
-protected:
-    Client* createClient(IConnection*);
-    void addManualConnection();
-    void noManualConnection();
+        ClientInformation clientInfo(qint16) override;
 
-    QMap<qint16,ClientInformation> m_clientsInfo;
-    QMap<qint16,MessageInformation> m_messages;
-    QMap<IConnection*,QString> m_pendingManualConnection;
-    qint16 m_clientCount;
-    qint16 m_messageCount;
-    QThread *m_clientThread;
-    ClientThreadManager *m_clientThreadManager;
+        QList<MessageInformation> messages() override;
 
-};
+        void addConnection(IConnection *) override;
+
+        void sendMessage(qint16, QString) override;
+
+        void connectManualy(QString) override;
+
+    Q_SIGNALS:
+
+        void clientCreated(Client *);
+
+        void removeAllClients();
+
+        void sendToClient(qint16, QString);
+
+    public Q_SLOTS:
+
+        void clientAdded(ClientInformation);
+
+        void addMessage(qint16, QString);
+
+        void clientRemoved(qint16);
+
+    protected:
+        Client *createClient(IConnection *);
+
+        void addManualConnection();
+
+        void noManualConnection();
+
+        QMap<qint16, ClientInformation> m_clientsInfo;
+        QMap<qint16, MessageInformation> m_messages;
+        QMap<IConnection *, QString> m_pendingManualConnection;
+        qint16 m_clientCount;
+        qint16 m_messageCount;
+        QThread *m_clientThread;
+        ClientThreadManager *m_clientThreadManager;
+
+    };
 
 }
 #endif // CLIENTMANAGER_H

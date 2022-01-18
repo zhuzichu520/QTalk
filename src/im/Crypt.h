@@ -8,26 +8,31 @@
 #define BLOCKSIZE 256
 #define SALTSIZE 8
 
-namespace IM
-{
+namespace IM {
 
-class Crypt : public QObject
-{
+    class Crypt : public QObject {
     Q_OBJECT
 
-public:
-    explicit Crypt(QObject* parent = nullptr);
-    ~Crypt();
+    public:
+        explicit Crypt(QObject *parent = nullptr);
 
-    RSA* getPublicKey(QByteArray &);
-    RSA* getPrivateKey(QByteArray &);
-    void freeKey(RSA*);
-    QByteArray randomBytes(int);
+        ~Crypt();
 
-    QByteArray encryptRSA(RSA *key, QByteArray &data);
-    QByteArray decryptRSA(RSA *key, QByteArray &data);
-    QByteArray encryptAES(QByteArray, QByteArray&);
-    QByteArray decryptAES(QByteArray, QByteArray&);
-};
+        RSA *getPublicKey(QByteArray &);
+
+        RSA *getPrivateKey(QByteArray &);
+
+        void freeKey(RSA *);
+
+        QByteArray randomBytes(int);
+
+        QByteArray encryptRSA(RSA *key, QByteArray &data);
+
+        QByteArray decryptRSA(RSA *key, QByteArray &data);
+
+        QByteArray encryptAES(QByteArray, QByteArray &);
+
+        QByteArray decryptAES(QByteArray, QByteArray &);
+    };
 
 }

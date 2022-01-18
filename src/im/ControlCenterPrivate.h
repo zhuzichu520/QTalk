@@ -3,30 +3,34 @@
 
 namespace IM {
 
-class MessageServer;
-class ControlCenter;
-class CryptEngine;
-class UserSettings;
-class ClientManager;
+    class MessageServer;
 
-class ControlCenterPrivate {
+    class ControlCenter;
 
-public:
-    explicit ControlCenterPrivate(ControlCenter *parent = nullptr);
+    class CryptEngine;
 
-    ~ControlCenterPrivate();
+    class UserSettings;
 
-    void init();
+    class ClientManager;
 
-    void shutdown();
+    class ControlCenterPrivate {
 
-    MessageServer* m_messageServer;
-    UserSettings* m_userSettings;
-    ClientManager* m_clientManager;
-    CryptEngine* m_cryptEngine;
+    public:
+        explicit ControlCenterPrivate(ControlCenter *parent = nullptr);
 
-    ControlCenter *m_cc;
-};
+        ~ControlCenterPrivate();
+
+        void init();
+
+        void shutdown();
+
+        MessageServer *m_messageServer;
+        UserSettings *m_userSettings;
+        ClientManager *m_clientManager;
+        CryptEngine *m_cryptEngine;
+
+        ControlCenter *m_cc;
+    };
 
 }
 

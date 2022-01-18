@@ -3,26 +3,25 @@
 
 #include <QObject>
 
-namespace IM
-{
+namespace IM {
 
-class RSAPair
-{
-public:
-    explicit RSAPair();
-    ~RSAPair();
+    class RSAPair {
+    public:
+        explicit RSAPair();
 
-    void generateNewPair();
+        ~RSAPair();
 
-    QByteArray publicKey();
+        void generateNewPair();
 
-    QByteArray privateKey();
+        QByteArray publicKey();
 
-private:
-    QByteArray m_pub;
-    QByteArray m_priv;
+        QByteArray privateKey();
 
-};
+    private:
+        QByteArray m_pub;
+        QByteArray m_priv;
+
+    };
 
 }
 #endif // RSAPAIR_H

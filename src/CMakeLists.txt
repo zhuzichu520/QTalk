@@ -1,4 +1,5 @@
 ﻿add_subdirectory(app)
+add_subdirectory(server)
 add_subdirectory(ui)
 add_subdirectory(im)
 add_subdirectory(common)

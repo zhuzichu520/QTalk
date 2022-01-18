@@ -25,5 +25,10 @@
         <file>third_party/colorpicker/SBPicker.qml</file>
         <file>layout/PackerColor.qml</file>
         <file>font/linea-basic-10.ttf</file>
+        <file>layout/Messenger.qml</file>
+        <file>layout/TransferManager.qml</file>
+        <file>layout/AppSettings.qml</file>
+        <file>layout/QuickConnect.qml</file>
+        <file>layout/FileTransfer.qml</file>
     </qresource>
 </RCC>

@@ -5,52 +5,54 @@
 #include <QObject>
 #include <QJsonObject>
 
-namespace IM
-{
+namespace IM {
 
-class Message
-{
-public:
-    Message(QByteArray);
-    Message();
+    class Message {
+    public:
+        Message(QByteArray);
 
-    enum Method{
-        SECURE,
-        CONNECT,
-        TRANSFER,
-        MSG
+        Message();
+
+        enum Method {
+            SECURE,
+            CONNECT,
+            TRANSFER,
+            MSG
+        };
+
+        enum Option {
+            RSA,
+            AES,
+            REQUEST,
+            TEXT,
+            RSF,
+            RAF,
+            REJ
+        };
+
+        static Message fromJson(QByteArray);
+
+        Method method();
+
+        void setMethod(Method);
+
+        Option option();
+
+        void setOption(Option);
+
+        QString data(QString);
+
+        void setData(QString, QString);
+
+        QByteArray toJson();
+
+    protected:
+        Method m_method;
+        Option m_option;
+        QJsonObject m_data;
+
+        void parseJson(QByteArray);
     };
-
-    enum Option{
-        RSA,
-        AES,
-        REQUEST,
-        TEXT,
-        RSF,
-        RAF,
-        REJ
-    };
-
-    static Message fromJson(QByteArray);
-
-    Method method();
-    void setMethod(Method);
-
-    Option option();
-    void setOption(Option);
-
-    QString data(QString);
-    void setData(QString, QString);
-
-    QByteArray toJson();
-
-protected:
-    Method m_method;
-    Option m_option;
-    QJsonObject m_data;
-
-    void parseJson(QByteArray);
-};
 
 }
 

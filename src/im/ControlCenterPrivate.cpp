@@ -19,7 +19,8 @@ namespace IM {
         m_clientManager = new ClientManager(m_cc);
         m_messageServer = new MessageServer(m_cc);
         m_messageServer->start();
-        QObject::connect(m_messageServer,&MessageServer::gotConnection,m_clientManager,&ClientManager::addConnection,Qt::QueuedConnection);
+        QObject::connect(m_messageServer, &MessageServer::gotConnection, m_clientManager, &ClientManager::addConnection,
+                         Qt::QueuedConnection);
     }
 
     void ControlCenterPrivate::shutdown() {
@@ -27,13 +28,13 @@ namespace IM {
             m_messageServer->shutdown();
             m_messageServer->deleteLater();
         }
-        if(m_clientManager) {
+        if (m_clientManager) {
             m_clientManager->shutdown();
             m_clientManager->deleteLater();
         }
-        if(m_cryptEngine)
+        if (m_cryptEngine)
             m_cryptEngine->deleteLater();
-        if(m_userSettings)
+        if (m_userSettings)
             m_userSettings->deleteLater();
     }
 

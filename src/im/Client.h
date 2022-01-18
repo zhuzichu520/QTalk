@@ -8,73 +8,71 @@
 #include <QObject>
 #include <QMap>
 
-namespace IM
-{
+namespace IM {
 
-class IConnection;
-class SecureTunnel;
+    class IConnection;
 
+    class SecureTunnel;
 
-class Client : public IClient
-{
+    class Client : public IClient {
     Q_OBJECT
 
-public:
+    public:
 
-    explicit Client(QObject* parent = nullptr);
+        explicit Client(QObject *parent = nullptr);
 
-    ~Client();
+        ~Client();
 
-    IConnection* connection() override;
+        IConnection *connection() override;
 
-    ClientInformation info() override;
+        ClientInformation info() override;
 
-    void sendMessage(QString msg) override;
+        void sendMessage(QString msg) override;
 
-    void setConnection(IConnection* conn);
+        void setConnection(IConnection *conn);
 
-    void setInfo(ClientInformation info);
+        void setInfo(ClientInformation info);
 
-    void start();
+        void start();
 
-    bool hasAcceptedData() const;
+        bool hasAcceptedData() const;
 
-public Q_SLOTS:
+    public Q_SLOTS:
 
-    void handleRead();
+        void handleRead();
 
-    void closeConnection();
+        void closeConnection();
 
-Q_SIGNALS:
+    Q_SIGNALS:
 
-    void infoRecieved(ClientInformation ci);
+        void infoRecieved(ClientInformation ci);
 
-    void messageRecieved(qint16 id, QString msg);
+        void messageRecieved(qint16 id, QString msg);
 
-    void connectionClosed();
+        void connectionClosed();
 
-protected:
+    protected:
 
-    void handleRequest();
+        void handleRequest();
 
-    void send(Message m);
+        void send(Message m);
 
-    void sendDetail();
+        void sendDetail();
 
-    void secured();
+        void secured();
 
-    IConnection* m_conn;
+        IConnection *m_conn;
 
-    SecureTunnel* m_tunnel;
+        SecureTunnel *m_tunnel;
 
-    ClientInformation m_info;
+        ClientInformation m_info;
 
-    Message m_request;
+        Message m_request;
 
-    bool m_detailAccepted;
+        bool m_detailAccepted;
 
-    bool m_detailSent;
-};
+        bool m_detailSent;
+    };
 
 }
 

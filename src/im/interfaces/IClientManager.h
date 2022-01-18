@@ -5,48 +5,48 @@
 #include <QObject>
 #include <QList>
 
-namespace IM
-{
+namespace IM {
 
-class IConnection;
-class ClientInformation;
-class MessageInformation;
+    class IConnection;
 
-class IClientManager : public QObject
-{
+    class ClientInformation;
+
+    class MessageInformation;
+
+    class IClientManager : public QObject {
     Q_OBJECT
 
-public:
+    public:
 
-    virtual void shutdown() = 0;
+        virtual void shutdown() = 0;
 
-    virtual QList<ClientInformation> clients() = 0;
+        virtual QList<ClientInformation> clients() = 0;
 
-    virtual ClientInformation clientInfo(qint16 id) = 0;
+        virtual ClientInformation clientInfo(qint16 id) = 0;
 
-    virtual QList<MessageInformation> messages() = 0;
+        virtual QList<MessageInformation> messages() = 0;
 
-    virtual void sendMessage(qint16 id,QString msg) = 0;
+        virtual void sendMessage(qint16 id, QString msg) = 0;
 
-    virtual void connectManualy(QString url) = 0;
+        virtual void connectManualy(QString url) = 0;
 
-    Q_INVOKABLE virtual void addConnection(IConnection* connection) = 0;
+        Q_INVOKABLE virtual void addConnection(IConnection *connection) = 0;
 
-Q_SIGNALS:
+    Q_SIGNALS:
 
-    void userListUpdated();
+        void userListUpdated();
 
-    void messageAdded(MessageInformation mi);
+        void messageAdded(MessageInformation mi);
 
-    void manualConnectionFailed(QString url);
+        void manualConnectionFailed(QString url);
 
-protected:
+    protected:
 
-    explicit IClientManager(QObject* parent = nullptr);
+        explicit IClientManager(QObject *parent = nullptr);
 
-    ~IClientManager();
+        ~IClientManager();
 
-};
+    };
 
 }
 #endif // ICLIENTMANAGER_H

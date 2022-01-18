@@ -3,14 +3,22 @@
 
 #include <QQmlApplicationEngine>
 
-class MainWindow
-{
-public:
-    explicit MainWindow();
-    ~MainWindow();
-    void show();
-protected:
-    QQmlApplicationEngine m_engine;
-};
+namespace IM {
 
-#endif // MAINWINDOW_H
+    class IControlCenter;
+
+    class UiManager;
+
+    class MainWindow {
+    public:
+        explicit MainWindow();
+
+        ~MainWindow();
+
+        void show();
+
+    protected:
+        QQmlApplicationEngine m_engine;
+    };
+}
+#endif
